@@ -1,0 +1,121 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:table="sap.ui.table" controllerName="pointofsales.waiter"
+	xmlns:tnt="sap.tnt" xmlns:form="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+		<Page title="Annapoorna Hotels" type="transparent">
+		<form:SimpleForm width="auto" class="sapUiResponsiveMargin"
+			layout="ResponsiveGridLayout" editable="true" labelSpanL="3"
+			labelSpanM="3" columnsL="1" columnsM="1" emptySpanL="4" emptySpanM="4"
+			title="Order Details">
+			<form:content >
+			<Label text="Kot Order No." />
+			<Input id="ordno" type="text" value="1" enabled="false" />
+				<Label text="Waiter ID" />
+				<Input id="wait" type="text" value="{/results/0/Name}" placeholder="Enter The Waiter Name.." />
+				<Label text="Table No." />
+				<Input id="table" type="text" placeholder="Enter The Table Name.." />
+				<Label text="No Of Packs" />
+				<Input id="people" type="number" placeholder="Enter The No.Of People.." />
+				<Label text="Session" />
+				<ComboBox id="session" items="{surya>/items}">
+					<items>
+						<core:Item key="{surya>key}" text="{surya>text}" />
+					</items>
+				</ComboBox>
+				<Label text="Date" />
+				<DatePicker id="myDate" value="{path: 'date>/myDate', type:'sap.ui.model.type.Date' }"></DatePicker>
+                <Label text="Order Time:"/>
+                <TimePicker
+				id="TP3"
+				valueFormat="HH:mm:ss "
+				displayFormat="HH:mm:ss"
+				change="handleChange"
+				placeholder="Enter daily task deadline"/>
+			</form:content>
+		</form:SimpleForm>
+		 <form:SimpleForm width="auto" class="sapUiResponsiveMargin"
+			layout="ResponsiveGridLayout" editable="true" labelSpanL="2"
+			labelSpanM="2" columnsL="0" columnsM="0" emptySpanL="3" emptySpanM="3"
+			title="Menu List"> 
+			<form:content>
+				<Table  title="Menu List"  width="auto"  >
+					<columns>
+						<Column width="auto">
+							<Label id="no" text="SNo."   />
+						
+						</Column>
+						<Column width="6rem">
+							<Label text="Description" />
+						</Column>
+						<Column width="auto">
+							<Label text="Qty" />
+						</Column>
+						<Column width="auto">
+							<Label text="Add Qty" />
+						</Column>
+						<Column width="auto">
+							<Label text="Sub Qty" />
+						</Column>
+						</columns>
+						<items>
+						 <ColumnListItem>
+				<cells>
+				<Input id="sno" value="1"  enabled="false" />
+				<ComboBox id="item" items="{/results}" width="auto">
+					<items>
+						<core:Item text="{Maktg}" />
+					</items>
+				</ComboBox>
+				<Input id="qty" type="Number" value="0" enabled="false" />
+				<Button type="Accept" press="increment" icon="sap-icon://sys-add" width="1px"/>
+				<Button type="Reject" press="decrement" icon="sap-icon://sys-minus" width="1px"/>
+				</cells>
+				</ColumnListItem> 
+				<ColumnListItem>
+				<cells>
+				<Input type="Number" value="2"  enabled="false" />
+				<ComboBox items="{/results}"  >
+					<items>
+						<core:Item text="{Maktg}" />
+					</items>
+				</ComboBox>
+				<Input id="qty1" type="Number" value="0" enabled="false"/>
+				<Button type="Accept" press="increment1" icon="sap-icon://sys-add"/>
+				<Button  type="Reject" press="decrement1" icon="sap-icon://sys-minus"/>
+				</cells>
+				</ColumnListItem>
+				
+						</items>
+					
+				</Table>
+			</form:content>
+		  </form:SimpleForm>
+		<footer>
+			<Toolbar id="otbFooter">
+				<ToolbarSpacer />
+				<Button type="Accept" text="Accept" press="accept">
+					<layoutData>
+						<OverflowToolbarLayoutData
+							moveToOverflow="false" />
+					</layoutData>
+				</Button>
+				<Button type="Reject" text="Reset">
+					<layoutData>
+						<OverflowToolbarLayoutData
+							moveToOverflow="false" />
+					</layoutData>
+				</Button>
+				<OverflowToolbarButton text="Delete" icon="sap-icon://delete" />
+				<OverflowToolbarButton text="Edit" icon="sap-icon://edit" />
+				<OverflowToolbarButton press="createLineItem" text="Add" icon="sap-icon://add" />
+				<OverflowToolbarButton text="Favorite" icon="sap-icon://favorite" />
+				<OverflowToolbarButton text="Flag" icon="sap-icon://flag" />
+
+			</Toolbar>
+		</footer>
+	</Page>
+	</pages>
+	</App>
+	
+</core:View>
