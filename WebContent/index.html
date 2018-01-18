@@ -13,12 +13,15 @@
 
 		<script>
 				sap.ui.localResources("pointofsales");
-				var app = new sap.m.App({initialPage:"idwaiter1"});
-				var page = sap.ui.view({id:"idwaiter1", viewName:"pointofsales.waiter", type:sap.ui.core.mvc.ViewType.XML});
+				var app = new sap.m.App("myApp",{initialPage:"idwaiter1"});
+				var page = sap.ui.view({id:"idwaiter1", viewName:"pointofsales.loginPage", type:sap.ui.core.mvc.ViewType.XML});
 				app.addPage(page);
 				app.placeAt("content");
+				var page1 = sap.ui.view({id:"orders",viewName:"pointofsales.waiter",	type : sap.ui.core.mvc.ViewType.XML});
+				app.addPage(page1);
+				app.placeAt("content");
 		</script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body class="sapUiBody" role="application">
 		<div id="content"></div>

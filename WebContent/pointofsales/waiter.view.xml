@@ -45,7 +45,7 @@
 							<Label id="no" text="SNo."   />
 						
 						</Column>
-						<Column width="6rem">
+						<Column width="auto">
 							<Label text="Description" />
 						</Column>
 						<Column width="auto">
@@ -106,11 +106,11 @@
 							moveToOverflow="false" />
 					</layoutData>
 				</Button>
-				<OverflowToolbarButton text="Delete" icon="sap-icon://delete" />
-				<OverflowToolbarButton text="Edit" icon="sap-icon://edit" />
+				<!-- <OverflowToolbarButton text="Delete" icon="sap-icon://delete" />
+				<OverflowToolbarButton text="Edit" icon="sap-icon://edit" /> -->
 				<OverflowToolbarButton press="createLineItem" text="Add" icon="sap-icon://add" />
-				<OverflowToolbarButton text="Favorite" icon="sap-icon://favorite" />
-				<OverflowToolbarButton text="Flag" icon="sap-icon://flag" />
+				
+				<OverflowToolbarButton press="logout" text="Logout"  icon="sap-icon://log" />
 
 			</Toolbar>
 		</footer>
