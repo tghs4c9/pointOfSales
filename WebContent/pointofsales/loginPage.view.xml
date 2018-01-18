@@ -1,0 +1,26 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:tnt="sap.tnt" controllerName="pointofsales.loginPage"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title='Login Page' type="transparent">
+		<content>
+			<tnt:ToolHeader>
+				<Button icon="sap-icon://menu2" type="transparent" />
+				<ToolbarSpacer />
+				
+				<ToolbarSpacer />
+				<Button text="Welcome User" type="tranparent" />
+			</tnt:ToolHeader>
+			<VBox fitContainer="" justifyContent="Center" alignItems="Center">
+				<items>
+					<Label></Label>
+					<Label></Label>
+					<Label text="Use Your Credentials.." align="center" />
+					<Input id="user" type="text" placeholder="Enter your Name.." />
+					<Input id="pass" type="Password" placeholder="Enter your Password.." />
+					<Button id="login" press="next" width="12rem" text="Login"
+						type="Emphasized" />
+				</items>
+			</VBox>
+			</content>
+	</Page>
+</core:View>
