@@ -7,17 +7,20 @@
 		<script src="resources/sap-ui-core.js"
 				id="sap-ui-bootstrap"
 				data-sap-ui-libs="sap.m"
-				data-sap-ui-theme="sap_bluecrystal">
+				data-sap-ui-theme="sap_bluecrystal"
+				data-sap-ui-resourceroots='{
+				"surya" : "./"
+				}'>
 		</script>
 		<!-- only load the mobile lib "sap.m" and the "sap_bluecrystal" theme -->
 
 		<script>
-				sap.ui.localResources("pointofsales");
+				//sap.ui.localResources("pointofsales");
 				var app = new sap.m.App("myApp",{initialPage:"idwaiter1"});
-				var page = sap.ui.view({id:"idwaiter1", viewName:"pointofsales.loginPage", type:sap.ui.core.mvc.ViewType.XML});
+				var page = sap.ui.view({id:"idwaiter1", viewName:"surya.views.loginPage", type:sap.ui.core.mvc.ViewType.XML});
 				app.addPage(page);
 				app.placeAt("content");
-				var page1 = sap.ui.view({id:"orders",viewName:"pointofsales.waiter",	type : sap.ui.core.mvc.ViewType.XML});
+				var page1 = sap.ui.view({id:"orders",viewName:"surya.views.waiter",	type : sap.ui.core.mvc.ViewType.XML});
 				app.addPage(page1);
 				app.placeAt("content");
 		</script>

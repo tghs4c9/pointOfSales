@@ -6,14 +6,11 @@ sap.ui
 
 					return Controller
 							.extend(
-									"pointofsales.waiter",
+									"surya.controllers.waiter",
 									{
 										
 										onInit : function() {
-
-											
-											
-											
+																		
 											// setInterval(function(){
 											//								
 											//				
@@ -137,6 +134,7 @@ sap.ui
 											// var oType = new
 											// sap.ui.model.type.DateTime({pattern:
 											// "HH:mm:ss"});
+											debugger;
 											var oEntry = {};
 											oEntry.Watid = this.getView().byId("wait").getValue();
 											oEntry.Tabno = this.getView().byId("table").getValue();

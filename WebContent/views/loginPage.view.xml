@@ -1,5 +1,5 @@
 <core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.m" xmlns:tnt="sap.tnt" controllerName="pointofsales.loginPage"
+	xmlns="sap.m" xmlns:tnt="sap.tnt" controllerName="surya.controllers.loginPage"
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page title='Login Page' type="transparent">
 		<content>

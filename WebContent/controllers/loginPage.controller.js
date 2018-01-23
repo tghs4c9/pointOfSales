@@ -1,10 +1,18 @@
-sap.ui.controller("pointofsales.loginPage", {
+sap.ui.define([
+	"sap/ui/core/mvc/Controller", "sap/m/MessageBox",
+],function(Controller,MessageBox){
+	return Controller
+	.extend(
+			"surya.controllers.loginPage",
+			{
+
 
 /**
 * Called when a controller is instantiated and its View controls (if available) are already created.
 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 * @memberOf pointofsales.loginPage
-*/
+*/              
+
 	next: function() {
 		
 		var oView = this.getView();
@@ -13,12 +21,19 @@ sap.ui.controller("pointofsales.loginPage", {
 		
 		if (var_user == "surya"  &&   var_pass == "surya")
 		{
-		console.log("Event Successful");
+		//console.log("Event Successful");
 		$('#user').val('');         
 		var oPage1 = new sap.ui.getCore().byId("myApp");
         oPage1.to("orders","flip");
 		}
-
+ 
+		
+		else
+			{
+			//jQuery.sap.require("sap.m.MessageBox");
+			MessageBox.information("Invalid Username/Password!!");
+			
+			}
 		
        
 	}
@@ -49,4 +64,5 @@ sap.ui.controller("pointofsales.loginPage", {
 //
 //	}
 
+			})
 });
