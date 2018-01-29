@@ -39,7 +39,7 @@
 			labelSpanM="2" columnsL="0" columnsM="0" emptySpanL="3" emptySpanM="3"
 			title="Menu List"> 
 			<form:content>
-				<Table  title="Menu List"  width="auto"  >
+				<Table id="itemTable" title="Menu List"  width="auto"  >
 					<columns>
 						<Column width="auto">
 							<Label id="no" text="SNo."   />
@@ -60,7 +60,7 @@
 						</columns>
 						<items>
 						 <ColumnListItem>
-				<cells>
+				<cells >
 				<Input id="sno" value="1"  enabled="false" />
 				<ComboBox id="item" items="{/results}" width="auto">
 					<items>
@@ -108,7 +108,7 @@
 				</Button>
 				<!-- <OverflowToolbarButton text="Delete" icon="sap-icon://delete" />
 				<OverflowToolbarButton text="Edit" icon="sap-icon://edit" /> -->
-				<OverflowToolbarButton press="createLineItem" text="Add" icon="sap-icon://add" />
+				<OverflowToolbarButton id="count" press="createLineItem" text="Add" icon="sap-icon://add" />
 				<OverflowToolbarButton press="logout" text="Logout"  icon="sap-icon://log" />
 
 			</Toolbar>

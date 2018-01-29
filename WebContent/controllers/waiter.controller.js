@@ -11,6 +11,7 @@ sap.ui
 										
 										onInit : function() {
 																		
+											var count = 0;
 											// setInterval(function(){
 											//								
 											//				
@@ -95,8 +96,7 @@ sap.ui
 
 											});
 
-											this.getView().setModel(oModel,
-													"surya");
+											this.getView().setModel(oModel,"surya");
 
 											/*
 											 * Calling Finished Items from ecc
@@ -224,11 +224,53 @@ sap.ui
 
 										},
 
-										
+										//var value = 0;
+								
 										createLineItem : function() {
+											var a = this;
+											var count = 0;
+
+											$("#count").click(function() {
+											   count;
+											});		
+									
+											console.log(count);
 											//jQuery.sap.require("sap.m.MessageBox");
 											MessageBox
-													.confirm("Are you Sure To Add The Line Item?");
+													.confirm("Are you Sure To Add The Line Item?",{
+														onClose : function(selection){
+															if(selection == "OK"){
+																
+																oItem = new sap.ui.core.ListItem("results",{text:'{Maktg}'});
+																var oTable = a.byId("itemTable");
+																var oItem = new sap.m.ColumnListItem({
+																	cells :[
+																		new sap.m.Input({
+																			value :count,
+																			enabled : false }),
+																		new sap.m.ComboBox({
+																			items : {path:"/results",
+																				     template:oItem}
+																		}),
+																		new sap.m.Input(),
+																		new sap.m.Button({
+																			type : "Accept",
+					                                                        icon : "sap-icon://sys-add",
+					                                                        width : "1px"
+																		}),
+																		new sap.m.Button({
+																			type : "Reject",
+					                                                        icon : "sap-icon://sys-minus",
+					                                                        width : "1px"
+																		})
+																	]
+																})
+																oTable.addItem(oItem);
+																
+															}
+														}
+													});
+											
 
 										},
 
