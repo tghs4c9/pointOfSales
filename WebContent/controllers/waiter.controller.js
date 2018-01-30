@@ -11,7 +11,13 @@ sap.ui
 										
 										onInit : function() {
 																		
-											var count = 0;
+											window.KOT = 1;
+											var oCounter = new sap.ui.model.json.JSONModel();
+											oCounter.setData({count:2});
+
+											this.getView().setModel(oCounter,"counter");
+                                            										
+											//var count = 0;
 											// setInterval(function(){
 											//								
 											//				
@@ -67,8 +73,7 @@ sap.ui
 																		.getParameter("element");
 
 																if (oElement.setValueState) {
-																	oElement
-																			.setValueState(sap.ui.core.ValueState.None);
+																	oElement.setValueState(sap.ui.core.ValueState.None);
 																}
 															});
 
@@ -79,17 +84,17 @@ sap.ui
 
 												{
 													key : "1",
-													text : "BreakFast"
+													text : "BREAKFAST"
 												},
 
 												{
 													key : "2",
-													text : "Lunch"
+													text : "LUNCH"
 												},
 
 												{
 													key : "3",
-													text : "Dinner"
+													text : "DINNER"
 												}
 
 												]
@@ -102,73 +107,81 @@ sap.ui
 											 * Calling Finished Items from ecc
 											 * using Odata
 											 */
-											oModel.refresh();
+											//oModel.refresh();
 											var sServiceUrlFg = "proxy/http/122.165.148.177:8000/sap/opu/odata/sap/ZFG_ODATA_ITEM_SRV";
+											//var sServiceUrlFgTest = "proxy/http/122.165.148.177:8000/sap/opu/odata/sap/ZFG_ODATA_ITEM_SRV";
 											var user = "sapdev";
 											var pass = "admin@123";
 
-											var oModelFg = new sap.ui.model.odata.ODataModel(
-													sServiceUrlFg, true, user,
-													pass);
+											var oModelFg = new sap.ui.model.odata.ODataModel(sServiceUrlFg,true,user,pass);
+											//var oModelFgTest = new sap.ui.model.odata.ODataModel(sServiceUrlFgTest,true,user,pass);
+											var oJsonModel = new sap.ui.model.json.JSONModel(oModelFg);
+											//var oJsonModelTest = new sap.ui.model.json.JSONModel(oModelFgTest);
+											//oJsonModel.refresh();
+											oModelFg.read("/zitemsSet",null,null,true,function(oData,response) {
+																oJsonModel.setData(oData);
+															});
+											/*ModelFgTest.read("/zitemsSet/$count",null,null,true,function(oData,response) {
+												window.FG = response.body;
+												console.log(response.body);
+												oJsonModelTest.setData(oData);
+											})
+*/											this.getView().setModel(oJsonModel);
+                                             var z = this;
+											console.log(oJsonModel);	
+											var sServiceUrlCount = "proxy/http/122.165.148.177:8000/sap/opu/odata/sap/ZKOT_MASTER_FIORI_SRV";
+											var oModelCount = new sap.ui.model.odata.ODataModel(sServiceUrlCount,true,user, pass);
+											var oJsonModelCount = new sap.ui.model.json.JSONModel(oModelCount);
+											oModelCount.read("/zkot_matmasterSet/$count",null,null,true,
+													function(oData,response) 
+											{
+									        	 console.log(response.body);
+									        	 var kot = response.body ;
+                                                 var orderno = (+kot + +1);
+									        	 var counter = z.getView().byId(
+													"kot").setValue(orderno);
+											});
+											//var kot = count;
+											
 
-											var oJsonModel = new sap.ui.model.json.JSONModel(
-													oModelFg);
-											oJsonModel.refresh();
-											oModelFg
-													.read(
-															"/zitemsSet",
-															null,
-															null,
-															true,
-															function(oData,
-																	response) {
-																oJsonModel
-																		.setData(oData);
-															})
-											this.getView().setModel(oJsonModel);
-											console.log(oJsonModel);
+											},
 
-										},
-
-										accept : function surya() {
+										accept : function() {
 											// var oType = new
 											// sap.ui.model.type.DateTime({pattern:
 											// "HH:mm:ss"});
 											debugger;
-											var oEntry = {};
-											oEntry.Watid = this.getView().byId("wait").getValue();
-											oEntry.Tabno = this.getView().byId("table").getValue();
-											// oEntry.Nopck =
-											// this.getView().byId("people").getValue();
-											oEntry.Sessn = this.getView().byId(
-													"session").getValue();
 											
-
-											oEntry.Bsdat = new Date(this
-													.getView().byId("myDate")
-													.getValue());
-											var time = oEntry.Bsdat.getTime();
+											//console.log(count);
+											console.log(KOT);
+											var oEntry = {};
+											oEntry.Kotno = Number(this.getView().byId("kot").getValue());
+											oEntry.Itmno = 1;
+											//oEntry.Itmno = this.getView().byId("kot").getValue();
+											oEntry.Watid = this.getView().byId("wait").getValue();
+										    oEntry.Tabno = this.getView().byId("table").getValue();
+											oEntry.Nopck = Number(this.getView().byId("people").getValue());
+											oEntry.Bsdat = new Date(this.getView().byId("myDate").getValue());
+											oEntry.Sessn = this.getView().byId("session").getValue();
+											oEntry.Maktx = this.getView().byId("item").getValue();
+											oEntry.Ordqy = this.getView().byId("qty").getValue();
+											
+											//var time = oEntry.Bsdat.getTime();
 											// oEntry.Btime = " \/Date("+ time +
 											// ")\/ ";
 											// oEntry.Btime = time;
-											oEntry.Itmno = 1;
-											oEntry.Maktx = this.getView().byId(
-													"item").getValue();
-											oEntry.Ordqy = this.getView().byId(
-													"qty").getValue();
+											
+																				
 
 											var sServiceUrlSave = "proxy/http/122.165.148.177:8000/sap/opu/odata/sap/ZKOT_MASTER_FIORI_SRV"
 											var user = "sapdev";
 											var pass = "admin@123";
-											var oModelSave = new sap.ui.model.odata.ODataModel(
-													sServiceUrlSave, true,
-													user, pass);
-
+											var oModelSave = new sap.ui.model.odata.ODataModel(sServiceUrlSave,true,user, pass);
 											var oJsonModelSave = new sap.ui.model.json.JSONModel(oModelSave);
 									       // var a = this;
-									      	        	
-											
-									        MessageBox.confirm("Are you Sure To Place The Order??",{
+									      							
+									        
+											MessageBox.confirm("Are you Sure To Place The Order??",{
 												onClose : function(selection){
 													if(selection == "OK"){
 														oModelSave.create("/zkot_matmasterSet",oEntry,null,
@@ -223,36 +236,36 @@ sap.ui
 											}
 
 										},
-
-										//var value = 0;
+			
 								
 										createLineItem : function() {
 											var a = this;
-											var count = 0;
-
-											$("#count").click(function() {
-											   count;
-											});		
-									
-											console.log(count);
-											//jQuery.sap.require("sap.m.MessageBox");
+											var counter = this.getView().byId(
+											"counter").getValue();
+											var counterFinal = ++counter;
+											var counter = this.getView().byId(
+											"counter").setValue(counterFinal);
+											/*var oModel = this.getView().getModel();
+											    var nCurrentCount = oModel.getProperty('/count');
+											    oModel.setProperty('/count', ++nCurrentCount);*/
 											MessageBox
-													.confirm("Are you Sure To Add The Line Item?",{
+													.confirm("Are you Sure To Add New Line Item?",{
 														onClose : function(selection){
 															if(selection == "OK"){
 																
-																oItem = new sap.ui.core.ListItem("results",{text:'{Maktg}'});
+																oItemFg = new sap.ui.core.ListItem({text:'{Maktg}'});
 																var oTable = a.byId("itemTable");
 																var oItem = new sap.m.ColumnListItem({
 																	cells :[
 																		new sap.m.Input({
-																			value :count,
+																			value :counterFinal,
 																			enabled : false }),
 																		new sap.m.ComboBox({
 																			items : {path:"/results",
-																				     template:oItem}
+																				     template:oItemFg}
 																		}),
-																		new sap.m.Input(),
+																		new sap.m.Input({value:0,
+																			enabled: true }),
 																		new sap.m.Button({
 																			type : "Accept",
 					                                                        icon : "sap-icon://sys-add",
