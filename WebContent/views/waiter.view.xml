@@ -11,8 +11,8 @@
 			<form:content >
 			<Label text="Kot Order No." />
 			<Input id="kot" type="text" value="1" enabled="false" />
-				<Label text="Waiter ID" />
-				<Input id="wait" type="text" value="{/results/0/Name}" placeholder="Enter The Waiter Name.." />
+				<Label text="Waiter Name" />
+				<Input id="wait" type="text" value="{path: 'login>/results/0/Zid'}" placeholder="Enter The Waiter Name.." />
 				<Label text="Table No." />
 				<Input id="table" type="text" placeholder="Enter The Table Name.." />
 				<Label text="No Of Packs" />
@@ -32,6 +32,7 @@
 				displayFormat="HH:mm:ss"
 				change="handleChange"
 				placeholder="Enter daily task deadline"/>
+			
 			</form:content>
 		</form:SimpleForm>
 		 <form:SimpleForm width="auto" class="sapUiResponsiveMargin"
@@ -63,11 +64,12 @@
 						 <ColumnListItem>
 				<cells >
 				<Input id="sno" value="1"  enabled="false" />
-				<ComboBox id="item" items="{/results}" width="auto">
+				<!-- <ComboBox id="item" items="{fg>/results}" width="auto">
 					<items>
-						<core:Item text="{Maktg}" />
+						<core:Item text="{fg>Maktg}" />
 					</items>
-				</ComboBox>
+				</ComboBox> -->
+				<Input id = "itemsFG" showValueHelp = "true" valueHelpRequest = "showF4" ></Input>
 				<Input id="qty" type="Number" value="0" enabled="false" />
 				<Button type="Accept" press="increment" icon="sap-icon://sys-add" width="1px"/>
 				<Button type="Reject" press="decrement" icon="sap-icon://sys-minus" width="1px"/>
@@ -76,9 +78,9 @@
 				<ColumnListItem>
 				<cells>
 				<Input type="Number" value="2"  enabled="false" />
-				<ComboBox items="{/results}"  >
+				<ComboBox items="{fg>/results}"  >
 					<items>
-						<core:Item text="{Maktg}" />
+						<core:Item text="{fg>Maktg}" />
 					</items>
 				</ComboBox>
 				<Input id="qty1" type="Number" value="0" enabled="false"/>
@@ -102,7 +104,7 @@
 							moveToOverflow="false" />
 					</layoutData>
 				</Button>
-				<Button type="Reject" text="Reset">
+				<Button type="Reject" text="Reset" press="reset">
 					<layoutData>
 						<OverflowToolbarLayoutData
 							moveToOverflow="false" />

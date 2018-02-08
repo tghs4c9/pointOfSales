@@ -19,7 +19,11 @@
 					<Input id="pass" type="Password" placeholder="Enter your Password.." />
 					<Button id="login" press="next" width="12rem" text="Login"
 						type="Emphasized" />
+                   <Input id="oUser" value="{login>/results/0/Zid}" visible="false" />
+                   <Input id="oPass" value="{login>/results/0/Zpass}" visible="false"  />		
+                   <Input id="oName" value="{login>/results/0/Zname}" visible="true"  />				
 				</items>
+				
 			</VBox>
 			</content>
 	</Page>
